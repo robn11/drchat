@@ -2,6 +2,7 @@
 
 class User {
     public $customerid;
+    public $isDR;
     public $data;
     private $database;
     
@@ -15,6 +16,7 @@ class User {
         $statement->execute($params);
         $customer = $statement->fetchAll(PDO::FETCH_ASSOC);
         $this->data = $customer[0];
+        $this->isDR = $customer[0]['isDR'];
     }
 }
 

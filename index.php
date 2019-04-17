@@ -25,13 +25,17 @@ if (isset($decoded->response->status) && $decoded->response->status == 'ERROR') 
 	<div class="mainContent">
 		<div class="jumbotron jumbotron-fluid">
 			<div class="container">
-				<h1 class="display-4">Hello, <?php echo $user->data['name']; ?></h1>
-				<p class="lead">We've collected some of the top news stories from around your area.</p>
-			</div>
+				<?php if ($user->isDR == 0) : ?>
+					<h1 class="display-4">Hello, <?php echo $user->data['name']; ?></h1>
+					<p class="lead">We've collected some of the top news stories from around your area.</p>
+				<?php else : ?>
+					<h1 class="display-4">Hello, Dr. <?php echo $user->data['name']; ?></h1>
+				<?php endif; ?>
+				</div>
 		</div>
 		<div class="row">
-		<?php for($index = 0; $index < 5; $index++) : ?>
-			<div class="col-4">
+		<?php for($index = 0; $index < 6; $index++) : ?>
+			<div class="col-4 align-items-center">
 				<div class="card c-card">
   					<div class="card-body">
   					  <h5 class="card-title"><?php echo $apiNewsResults->articles[$index]->title; ?></h5>
