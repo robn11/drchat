@@ -1,0 +1,19 @@
+.mainContent {
+    background-color: white;
+	margin: 5px 0 15px 0;
+	padding: 25px;
+	border-radius: 8px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.jumbotron {
+    border-radius: 8px;
+}
+
+#navbar {
+    background-color: #80b3ff;
+}
+
+.c-card {
+    margin-top: 10px;
+}
