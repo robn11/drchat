@@ -5,7 +5,7 @@ class User {
     public $username;
     public $isDR;
     public $data;
-    private $database;
+    public $database;
     
     function __construct($username, $database) {
         $this->username = $username;

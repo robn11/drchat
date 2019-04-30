@@ -1,0 +1,1 @@
+select * from nurseinformation where nurseid=:nurseid;

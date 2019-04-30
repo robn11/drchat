@@ -16,5 +16,6 @@ if (isset($decoded->response->status) && $decoded->response->status == 'ERROR') 
     die('error occured: ' . $decoded->response->errormessage);
 }
 $articleId = get('articleId');
-print_r($apiNewsResults->articles[$articleId]);
+// print_r($apiNewsResults->articles[$articleId]);
 ?>
+

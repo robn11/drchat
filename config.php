@@ -28,6 +28,12 @@ if (!isset($_SESSION['user']) && !in_array($current_url, $acceptableURLs)) {
 // Else if session key customerID is set get $customer from the database
 elseif (isset($_SESSION['user'])){
     $user = new User($_SESSION['user']['username'], $database);
+    if ($user->isDR == 0) {
+        $nurseInfo = new NurseInfo($user->customerid, $database);
+    }
+    else {
+        $doctorInfo = new DoctorInfo($user->customerid);
+    }
 }
 ?>
 <html>
@@ -62,9 +68,17 @@ elseif (isset($_SESSION['user'])){
                 <li class="nav-item">
                     <a class="nav-link" href="index.php">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="form.php">Form</a>
-                </li>
+                <?php if (isset($user->isDR)) : ?>
+                    <?php if ($user->isDR == 0) : ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="doctors.php">Doctors</a>
+                        </li>
+                    <?php else : ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="users.php">Nurses</a>
+                        </li>
+                    <?php endif; ?>
+                <?php endif; ?>
             </ul>
             <?php if (isset($user->customerid)) : ?>
                 <ul class="navbar-nav">
@@ -74,8 +88,12 @@ elseif (isset($_SESSION['user'])){
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="profile.php">Profile</a>
-                            <!-- <div class="dropdown-divider"></div> -->
-                            <!-- <a class="dropdown-item" href="#">Something else here</a> -->
+                            <div class="dropdown-divider"></div>
+                            <?php if ($user->isDR == 0) : ?>
+                                <a class="dropdown-item" href="userInfo.php">Fill out your information</a>
+                            <?php else : ?>
+                                <a class="dropdown-item" href="doctorInfo.php">Fill out your information</a>
+                            <?php endif; ?>
                         </div>
                     </li>
                 </ul>

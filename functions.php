@@ -1,16 +1,16 @@
 <?php
 
-function searchBooks($term, $database) {
-	// Get list of books
+function searchAccounts($accountType, $term, $database) {
+    // Get list of users/doctors
 	$term = $term . '%';
-	$sql = file_get_contents('sql/getBooks.sql');
+	$sql = get_sql('getAccounts');
 	$params = array(
-		'term' => $term
+        'term' => $term,
+        'account' => $accountType
 	);
 	$statement = $database->prepare($sql);
 	$statement->execute($params);
-	$books = $statement->fetchAll(PDO::FETCH_ASSOC);
-	return $books;
+	return $statement->fetchAll(PDO::FETCH_ASSOC);
 }
 
 function get($key) {
