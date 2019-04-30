@@ -9,24 +9,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$username = $_POST['username'];
 	$password = $_POST['password'];
 	
-	// Query records that have usernames and passwords that match those in the customers table
-	$sql = file_get_contents('sql/attemptLogin.sql');
-	$params = array("username" => $username, "password" => $password);
-	print_r($params);
-	$statement = $database->prepare($sql);
-	$statement->execute($params);
-	$users = $statement->fetchAll(PDO::FETCH_ASSOC);
-	// If $users is not empty
-	if(!empty($users)) {
-		// Set $user equal to the first result of $users
-		$user = $users[0];
-		// Set a session variable with a key of customerID equal to the customerID returned
-		$_SESSION['user']['customerid'] = $user['customerid'];
-		// Redirect to the index.php file
-		header('location: index.php');
-		die();
+	$loginMessage = '';
+
+    //if login attempted
+    if (isset($_POST['username']) && isset($_POST['password'])) {          
+		$authResult = User::authenticate($username, $password, $database);
+        if ($authResult) {
+			// Set a session variable with a key of customerID equal to the customerID returned
+			$_SESSION['user']['username'] = $username;
+			// Redirect to the index.php file
+			header('location: index.php');
+			die();
+        } elseif ($authResult == false) {
+            $loginMessage = 'Sorry, wrong username/password. Try again.';
+        }
+    }            
 	}
-}
 
 ?>
 <html>

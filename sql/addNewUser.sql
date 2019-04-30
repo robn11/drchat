@@ -1,0 +1,1 @@
+insert into customers (username, password) values (:username, :password)

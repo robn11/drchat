@@ -1,0 +1,1 @@
+SELECT password FROM customers WHERE username=:username 

@@ -5,6 +5,7 @@ $user = 'newberryr3';
 $password = 'geKeva2e';
 
 $database = new PDO('mysql:host=csweb.hh.nku.edu:3306;dbname=db_spring19_newberryr3', $user, $password);
+$database->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
 
 //Autoloader
 function class_autoloader($class) {
@@ -18,14 +19,15 @@ session_start();
 include('functions.php');
 $current_url = basename($_SERVER['REQUEST_URI']);
 
+$acceptableURLs = array("login.php", "register.php");
 // if customerID is not set in the session and current URL not login.php redirect to login page
-if (!isset($_SESSION['user']) && $current_url != 'login.php') {
+if (!isset($_SESSION['user']) && !in_array($current_url, $acceptableURLs)) {
     header('location: login.php');
     die();
 }
 // Else if session key customerID is set get $customer from the database
-elseif (isset($_SESSION['user']['customerid'])){
-    $user = new User($_SESSION['user']['customerid'], $database);
+elseif (isset($_SESSION['user'])){
+    $user = new User($_SESSION['user']['username'], $database);
 }
 ?>
 <html>
@@ -43,6 +45,9 @@ elseif (isset($_SESSION['user']['customerid'])){
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!-- JS -->
     <script src="js/site.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <!-- CSS -->
@@ -68,7 +73,7 @@ elseif (isset($_SESSION['user']['customerid'])){
                           User: <?php echo $user->data['username']; ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Profile</a>
+                            <a class="dropdown-item" href="profile.php">Profile</a>
                             <!-- <div class="dropdown-divider"></div> -->
                             <!-- <a class="dropdown-item" href="#">Something else here</a> -->
                         </div>
@@ -78,6 +83,8 @@ elseif (isset($_SESSION['user']['customerid'])){
         </div>
         <?php if (isset($user->customerid)) : ?>
             <a class="btn btn-danger" href="logout.php">Logout</a>
+        <?php else : ?>
+            <a class="btn btn-success" href="register.php">Register</a>
         <?php endif; ?>
     </nav>
 </body>

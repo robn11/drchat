@@ -4,16 +4,16 @@ Instructor: Jesse Hockenbury
 An individual final project that will allow for the use of learned concepts this semester.
 
 Required elements: (70 pts)
-	- A configuration file that connects to a database, includes functions.php and autoloads classes
-	- Two forms that support add/edit functionality
-	- At least one listing page that is searchable 
-	- Usage of session variables somehow in the application
-	- A database with at least 3 tables, 2 or which are related
-	- Use an SQL query with a JOIN statement
-	- Make use of an OOP class somewhere in the application
-	- Use a function or class method other than the constructor method
-	- Properly print variables inside of HTML
-	- Project hosted on github
+	- A configuration file that connects to a database, includes functions.php and autoloads classes --done
+	- Two forms that support add/edit functionality (register/profile - add/edit --done, todo)
+	- At least one listing page that is searchable (search user/drs //todo)
+	- Usage of session variables somehow in the application --done
+	- A database with at least 3 tables, 2 or which are related (drs to users)
+	- Use an SQL query with a JOIN statement //todo
+	- Make use of an OOP class somewhere in the application --done
+	- Use a function or class method other than the constructor method --done
+	- Properly print variables inside of HTML --done
+	- Project hosted on github --done
 	
 Creativity (20 pts)
 	- Aesthetically pleasing design implemented
