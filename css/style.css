@@ -21,3 +21,11 @@
 .margin-top10 {
     margin-top: 10px;
 }
+
+.margin-bottom10 {
+    margin-bottom: 10px;
+}
+
+#registerError {
+    display: none;
+}

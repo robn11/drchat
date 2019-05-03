@@ -1,0 +1,1 @@
+select * from customers c join doctorinformation d on c.customerid=d.doctorid where c.customerid=:doctorid and c.isDR=:accountType

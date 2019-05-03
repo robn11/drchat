@@ -25,8 +25,10 @@ $accounts = searchAccounts(0, get('searchTerm'), $database);
             </div>
 		</form>
 		<ul class="list-group margin-top10">
-            <?php foreach($accounts as $key=>$value) : ?>
-                <li class="list-group-item"><strong><?php echo $value['name']; ?></strong> | Username: <?php echo $value['username']; ?> Email: <?php echo $value['email']; ?> Phone: <?php echo $value['phone']; ?></li>
+        <?php foreach($accounts as $key=>$value) : ?>
+            <li class="list-group-item"><strong><?php echo $value['name']; ?></strong> | Username: <?php echo $value['username']; ?> Email: <?php echo $value['email']; ?> Phone: <?php echo $value['phone']; ?>
+                <a class="btn btn-primary btn-sm justify-content-end" href="userPage.php?id=<?php echo $value['customerid']; ?>">Nurse's Page</a>
+            </li>
             <?php endforeach; ?>
         </ul>
 	</div>

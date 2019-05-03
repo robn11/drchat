@@ -52,6 +52,9 @@ $(function() {
 </script>
 
 <div class="container">
+    <div class="alert alert-danger margin-top10" id="registerError" role="alert">
+        Please Enter A Value
+    </div>
     <h1>Register</h1>
     <hr>
     <form action="" method="post" class="registerForm">

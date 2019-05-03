@@ -21,29 +21,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			header('location: index.php');
 			die();
         } elseif ($authResult == false) {
-            $loginMessage = 'Sorry, wrong username/password. Try again.';
+			$loginMessage = "Sorry, wrong username/password Try again.";
         }
     }            
 	}
 
 ?>
-<html>
-<body>
-	<div class="container">
-		<div class="row">
-			<div class="col-6">
-				<h1>Login</h1>
-				<form method="POST" action="">
-				<div class="form-group">
-					<input required type="text" class="form-control" name="username" placeholder="Username" />
-				</div>
-				<div class="form-group">
-					<input required type="password" class="form-control" name="password" placeholder="Password" />
-				</div>
-					<input type="submit" class="btn btn-primary" value="Log In" />
-				</form>
+<div class="container">
+	<?php if (isset($authResult)) : ?>
+		<div class="alert alert-danger margin-top10" role="alert">
+			<?php if ($authResult == false) { echo $loginMessage; } ?>
+		</div>
+	<?php endif; ?>
+	<div class="alert alert-danger margin-top10" id="registerError" role="alert">
+        Please Enter A Value
+    </div>
+	<div class="row">
+		<div class="col-6">
+			<h1>Login</h1>
+			<form method="POST" action="" class="loginForm">
+			<div class="form-group">
+				<input required type="text" class="form-control" name="username" placeholder="Username" />
 			</div>
+			<div class="form-group">
+				<input required type="password" class="form-control" name="password" placeholder="Password" />
+			</div>
+				<input type="submit" class="btn btn-primary login" value="Log In" />
+			</form>
 		</div>
 	</div>
-</body>
-</html>
+</div>

@@ -35,8 +35,22 @@ class NurseInfo {
         $params = array("nurseid"=>$this->nurseId);
         $statement = $database->prepare($sql);
         $statement->execute($params);
-        $drInfo = $statement->fetchAll(PDO::FETCH_ASSOC);
-        return $drInfo[0];
+        $nurseInfo = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $nurseInfo[0];
+    }
+
+    function checkIfNurseInfoHasBeenEntered($nurseId, $database) {
+        $sql = get_sql('getNurseInfoByUserId');
+        $params = array("nurseid"=>$this->nurseId);
+        $statement = $database->prepare($sql);
+        $statement->execute($params);
+        $nurseInfo = $statement->fetchAll(PDO::FETCH_ASSOC);
+        if (empty($nurseInfo)) {
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 }
 

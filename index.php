@@ -34,7 +34,7 @@ if (isset($decoded->response->status) && $decoded->response->status == 'ERROR') 
 				</div>
 		</div>
 		<div class="row">
-		<?php for($index = 0; $index < 6; $index++) : ?>
+		<?php for($index = 0; $index < 3; $index++) : ?>
 			<div class="col-4 align-items-center">
 				<div class="card c-card">
   					<div class="card-body">

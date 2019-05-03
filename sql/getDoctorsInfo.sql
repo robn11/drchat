@@ -1,0 +1,1 @@
+select * from doctorinformation where doctorid=:doctorid;

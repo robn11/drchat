@@ -1,0 +1,1 @@
+select * from customers c join nurseinformation n on c.customerid=n.nurseid where c.customerid=:nurseid and c.isDR=:accountType;

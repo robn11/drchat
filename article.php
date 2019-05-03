@@ -16,6 +16,17 @@ if (isset($decoded->response->status) && $decoded->response->status == 'ERROR') 
     die('error occured: ' . $decoded->response->errormessage);
 }
 $articleId = get('articleId');
-// print_r($apiNewsResults->articles[$articleId]);
+$article = $apiNewsResults->articles[$articleId];
 ?>
 
+<div class="container">
+    <div class="mainContent">
+        <div class="jumbotron jumbotron-fluid">
+	    	<div class="container">
+	    		<h1 class="display-4"><?php echo $article->title; ?></h1>
+	    		<a class="lead" target="_blank" href="<?php echo $article->url; ?>">Visit article on their site.</a>
+	    	</div>
+	    </div>
+        <p><?php echo $article->description; ?></p>
+    </div>
+</div>

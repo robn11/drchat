@@ -78,7 +78,13 @@ elseif (isset($_SESSION['user'])){
                             <a class="nav-link" href="users.php">Nurses</a>
                         </li>
                     <?php endif; ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="articles.php">Articles</a>
+                    </li>
                 <?php endif; ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="messages.php">Messages</a>
+                </li>
             </ul>
             <?php if (isset($user->customerid)) : ?>
                 <ul class="navbar-nav">
@@ -90,9 +96,17 @@ elseif (isset($_SESSION['user'])){
                             <a class="dropdown-item" href="profile.php">Profile</a>
                             <div class="dropdown-divider"></div>
                             <?php if ($user->isDR == 0) : ?>
-                                <a class="dropdown-item" href="userInfo.php">Fill out your information</a>
+                                <?php if ($nurseInfo->checkIfNurseInfoHasBeenEntered($user->customerid, $database)) : ?>
+                                    <a class="dropdown-item" href="userInfo.php?action=update">Update your information</a>
+                                <?php else : ?>
+                                    <a class="dropdown-item" href="userInfo.php">Fill out your information</a>
+                                <?php endif; ?>
                             <?php else : ?>
-                                <a class="dropdown-item" href="doctorInfo.php">Fill out your information</a>
+                                <?php if ($doctorInfo->checkIfDoctorInfoHasBeenEntered($user->customerid, $database)) : ?>
+                                    <a class="dropdown-item" href="doctorInfo.php?action=update">Update your information</a>
+                                <?php else : ?>
+                                    <a class="dropdown-item" href="doctorInfo.php">Fill out your information</a>
+                                <?php endif; ?>
                             <?php endif; ?>
                         </div>
                     </li>

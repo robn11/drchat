@@ -20,16 +20,31 @@ $(function() {
             if($(this)[0].checkValidity() == false) {
               $(this).addClass('is-invalid');
               validFormSection = false;
-            } 
+            }
+            else {
+              $(this)[0].removeClass('is-invalid');
+              $(this)[0].addClass('is-valid');
+              validFormSection = true;
+            }
         });
       
         if(validFormSection == false) {
             $('#registerError').fadeIn();
             return false;
         }
+        else {
+          return true;
+        }
       
-        $('#careerError').fadeOut();
+        $('#registerError').fadeOut();
       }
+
+      $('.login').click(function() {
+        currentLogin = $(this).closest('.loginForm');
+        if (validateRegister(currentLogin) == false) {
+          return false;
+        } 
+      });
 
     $('.datepicker').each(function(){
       datepickerID = $(this).attr("id");

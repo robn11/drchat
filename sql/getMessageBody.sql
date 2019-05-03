@@ -1,0 +1,1 @@
+select messageBody from messages where messageid=:messageid;

@@ -29,13 +29,25 @@ class DoctorInfo {
     }
 
     function getDoctorInfo($database) {
-
         $sql = get_sql('getDoctorInfoByUserId');
         $params = array("doctorid"=>$this->drId);
         $statement = $database->prepare($sql);
         $statement->execute($params);
         $drInfo = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $drInfo[0];
+    }
+    function checkIfDoctorInfoHasBeenEntered($drId, $database) {
+        $sql = get_sql('getDoctorInfoByUserId');
+        $params = array("doctorid"=>$drId);
+        $statement = $database->prepare($sql);
+        $statement->execute($params);
+        $drInfo = $statement->fetchAll(PDO::FETCH_ASSOC);
+        if (empty($drInfo)) {
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 }
 

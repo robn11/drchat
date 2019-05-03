@@ -4,7 +4,7 @@ include('config.php');
 $accounts = searchAccounts(1, get('searchTerm'), $database);
 
 ?>
-<div class="container">
+<div class="d-flex container">
 	<div class="mainContent">
 		<div class="jumbotron jumbotron-fluid">
 			<div class="container">
@@ -26,7 +26,9 @@ $accounts = searchAccounts(1, get('searchTerm'), $database);
 		</form>
 		<ul class="list-group margin-top10">
             <?php foreach($accounts as $key=>$value) : ?>
-            <li class="list-group-item"><strong>Dr. <?php echo $value['name']; ?></strong> | Username: <?php echo $value['username']; ?> Email: <?php echo $value['email']; ?> Phone: <?php echo $value['phone']; ?></li>
+            <li class="list-group-item"><strong>Dr. <?php echo $value['name']; ?></strong> | Username: <?php echo $value['username']; ?> Email: <?php echo $value['email']; ?> Phone: <?php echo $value['phone']; ?>
+                <a class="btn btn-primary btn-sm justify-content-end" href="doctorPage.php?id=<?php echo $value['customerid']; ?>">Doctor's Page</a>
+            </li>
             <?php endforeach; ?>
         </ul>
 	</div>
